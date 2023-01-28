@@ -86,7 +86,7 @@ export class AuthService {
         delete newUser.password;
       }
 
-      const jwtToken = this.jwt.sign({ id: user.id, email: user.email });
+      const jwtToken = this.jwt.sign({ id: newUser.id, email: newUser.email });
 
       return { ...newUser, token: jwtToken };
     } catch (error) {
