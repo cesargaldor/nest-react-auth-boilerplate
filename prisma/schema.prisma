@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id                String    @id @default(cuid())
+    name              String?
+    password          String?
+    email             String    @unique
+    emailVerified     DateTime?
+    googleId          String?
+    image             String?
+    stripeId          String?   @unique
+    billingCycleStart Int? // day of the month when the billing cycle starts
+    active            Boolean   @default(true)
+    createdAt         DateTime  @default(now())
+    deletedAt         DateTime?
+}
